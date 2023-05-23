@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(1, 1, 29);
+    height: 100vh;
+}
+.container__button {
+    background-color: red;
+    position: relative; /* se coloca Relative para que a 
+    pseudoclasse ::before nao ultrapasse o container */
+    margin: 3rem;
+    width: 160px;
+    height: 60px;
+}
+
+.container__button::before , .container__button::after {
+    content: "";
+    position: absolute; /*Absolute, mas relativa ao container__button*/
+    inset: 0;
+    background-color: rgb(22, 185, 93);
+    transition: 0.5s; /*Transição para o container__button:hover::before*/
+}
+/*::BEFORE e ::AFTER trabalharão juntos para formar uma borda sólida (before) e uma com BLUR (after)*/
+
+
+.container__button:hover::before {
+    inset: -3px; /*traz a borda do ::before*/
+    
+}
+.container__button:hover::after {
+    inset: -3px;
+    filter: blur(10px);
+
+}
+
+.container__button:nth-child(1)::before,
+.container__button:nth-child(1)::after {
+    background: linear-gradient(45deg, rgb(7, 205, 231), rgb(1,1,29),rgb(1,1,29), rgb(209, 5, 175));
+}
+
+.container__button:nth-child(2)::before,
+.container__button:nth-child(2)::after {
+    background: linear-gradient(45deg, rgb(227, 231, 7), rgb(1,1,29),rgb(1,1,29), rgb(5, 209, 32));
+}
+
+.button {
+    color: aliceblue;
+    font-size: 25px;
+    position: absolute; /*mas esta relativo ao container__button*/
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(1, 1, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: solid 1px rgb(25, 5, 70);
+    overflow: hidden;
+
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80px;
+    background: rgb(253, 253, 253, 0.05);
+    transform: skew(45deg); 
+    width: 100%;
+    height: 100%;
+    
+}
+
+
